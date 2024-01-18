@@ -36,11 +36,14 @@ public class MovieManagerTest {
 
     @Test
     public void shouldFindLastIfDegreeLimit() {
-        MovieManager manager = new MovieManager(3);
+        MovieManager manager = new MovieManager(7);
         manager.add(mov1);
         manager.add(mov2);
         manager.add(mov3);
-        Movie[] expected = {mov3, mov2, mov1};
+        manager.add(mov4);
+        manager.add(mov5);
+        manager.add(mov6);
+        Movie[] expected = {mov6, mov5, mov4, mov3, mov2, mov1};
         Movie[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);
@@ -48,7 +51,7 @@ public class MovieManagerTest {
 
     @Test
     public void shouldFindLastIfUnderLimit() {
-        MovieManager manager = new MovieManager(6);
+        MovieManager manager = new MovieManager(3);
         manager.add(mov1);
         manager.add(mov2);
         manager.add(mov3);
@@ -56,7 +59,23 @@ public class MovieManagerTest {
         manager.add(mov5);
         manager.add(mov6);
 
-        Movie[] expected = {mov6, mov5, mov4, mov3, mov2, mov1};
+        Movie[] expected = {mov6, mov5, mov4};
+        Movie[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldFindLastIfEqualsLimit() {
+        MovieManager manager = new MovieManager(5);
+        manager.add(mov1);
+        manager.add(mov2);
+        manager.add(mov3);
+        manager.add(mov4);
+        manager.add(mov5);
+        manager.add(mov6);
+
+        Movie[] expected = {mov6, mov5, mov4, mov3, mov2};
         Movie[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected, actual);

@@ -28,7 +28,7 @@ public class MovieManager {
 
     public Movie[] findLast() {
         int resultLength;
-        if (this.limit > 5) {
+        if (movies.length < this.limit) {
             resultLength = movies.length;
         } else {
             resultLength = this.limit;
